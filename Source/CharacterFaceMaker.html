@@ -1,4 +1,13 @@
 <html>
+
+<head>
+	<style>
+		input {
+			width: 48px;
+		}
+	</style>
+</head>
+
 <body>
 
 <div id="divUi">
@@ -10,22 +19,46 @@
 	<div id="divInput">
 
 		<div>
-			<label>Face:</label>
+			<label>Skin Color:</label>
+			<input id="inputSkinColor" value="rgb(128, 64, 0)" style="width: 128px;"></input>
+		</div>
+
+		<div>
+			<label>Outline:</label>
 
 			<div>
 				<div>
 					<label>Width:</label>
 					<input id="inputFaceWidth" type="number" value="80"></input>
-				</div>
 
-				<div>
 					<label>Height:</label>
 					<input id="inputFaceHeight" type="number" value="100"></input>
 				</div>
 
 				<div>
-					<label>Chin Width:</label>
-					<input id="inputFaceChinWidth" type="number" value="30"></input>
+					<label>Jaw:</label>
+
+					<div>
+						<label>Width:</label>
+						<input id="inputJawWidth" type="number" value="60"></input>
+
+						<label>Height:</label>
+						<input id="inputJawHeight" type="number" value="30"></input>
+					</div>
+				</div>
+
+				<div>
+					<label>Chin:</label>
+
+					<div>
+						<label>Width:</label>
+						<input id="inputChinWidth" type="number" value="20"></input>
+
+						<label>Height:</label>
+						<input id="inputChinHeight" type="number" value="3"></input>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
@@ -34,19 +67,32 @@
 
 			<div>
 				<div>
-					<label>Width:</label>
-					<input id="inputEyeWidth" type="number"  value="20"></input>
+					<label>Iris Color:</label>
+					<input id="inputEyeIrisColor" value="rgb(0, 128, 0)" style="width: 128px;"></input>
 				</div>
 
 				<div>
+					<label>Width:</label>
+					<input id="inputEyeWidth" type="number"  value="18"></input>
+
 					<label>Height:</label>
-					<input id="inputEyeHeight" type="number" value="10"></input>
+					<input id="inputEyeHeight" type="number" value="9"></input>
+
+					<label>Spacing:</label>
+					<input id="inputEyeSpacing" type="number" value="20"></input>
+
 				</div>
 
 				<div>
 					<label>Upper Lid Thickness:</label>
 					<input id="inputEyeUpperLidThickness" type="number" value="3"></input>
 				</div>
+
+				<div>
+					<label>Eyebrow Thickness:</label>
+					<input id="inputEyebrowThickness" type="number" value="3"></input>
+				</div>
+
 
 			</div>
 		</div>
@@ -62,9 +108,7 @@
 					<div>
 						<label>Width:</label>
 						<input id="inputNoseTipWidth" type="number" value="10"></input>
-					</div>
 
-					<div>
 						<label>Height:</label>
 						<input id="inputNoseTipHeight" type="number" value="5"></input>
 					</div>
@@ -80,9 +124,7 @@
 					<div>
 						<label>Width:</label>
 						<input id="inputNoseWingWidth" type="number" value="4"></input>
-					</div>
 
-					<div>
 						<label>Height:</label>
 						<input id="inputNoseWingHeight" type="number" value="6"></input>
 					</div>
@@ -122,14 +164,37 @@
 				<div>
 					<label>Width:</label>
 					<input id="inputEarWidth" type="number" value="8"></input>
-				</div>
 
-				<div>
 					<label>Height:</label>
 					<input id="inputEarHeight" type="number" value="16"></input>
 				</div>
 
 			</div>
+		</div>
+
+		<div>
+			<label>Hair:</label>
+
+			<div>
+				<div>
+					<label>Color:</label>
+					<input id="inputHairColor" value="rgb(16, 16, 16)" style="width: 128px;"></input>
+				</div>
+
+				<div>
+					<label>Height of Hairline Above Eyes:</label>
+					<input id="inputHairlineHeightAboveEyes" type="number" value="30"></input>
+				</div>
+
+				<div>
+					<label>Height of Hair Above Crown:</label>
+					<input id="inputHairHeightAboveCrown" type="number" value="5"></input>
+				</div>
+
+				</div>
+
+			</div>
+		</div>
 
 
 	</div>
@@ -149,13 +214,24 @@ function buttonRender_Clicked()
 	var d = document;
 	var c = (id) => parseFloat(d.getElementById(id).value);
 
+	var skinColor =
+		d.getElementById("inputSkinColor").value;
+
 	var faceWidth = c("inputFaceWidth");
 	var faceHeight = c("inputFaceHeight");
-	var faceChinWidth = c("inputFaceChinWidth");
+	var chinWidth = c("inputChinWidth");
+	var chinHeight = c("inputChinHeight");
+	var jawWidth = c("inputJawWidth");
+	var jawHeight = c("inputJawHeight");
+
+	var eyeIrisColor =
+		d.getElementById("inputEyeIrisColor").value;
 
 	var eyeWidth = c("inputEyeWidth");
 	var eyeHeight = c("inputEyeHeight");
+	var eyeSpacing = c("inputEyeSpacing");
 	var eyeUpperLidThickness = c("inputEyeUpperLidThickness");
+	var eyebrowThickness = c("inputEyebrowThickness");
 
 	var noseTipWidth = c("inputNoseTipWidth");
 	var noseTipHeight = c("inputNoseTipHeight");
@@ -170,18 +246,29 @@ function buttonRender_Clicked()
 	var earWidth = c("inputEarWidth");
 	var earHeight = c("inputEarHeight");
 
+	var hairColor =
+		d.getElementById("inputHairColor").value;
+	var hairlineHeightAboveEyes = c("inputHairlineHeightAboveEyes");
+	var hairHeightAboveCrown = c("inputHairHeightAboveCrown");
+
 	var face = new Face
 	(
+		skinColor,
+
 		new FaceFeatureOutline
 		(
 			new Coords(faceWidth, faceHeight),
-			faceChinWidth
+			new Coords(chinWidth, chinHeight),
+			new Coords(jawWidth, jawHeight)
 		),
 
 		new FaceFeatureEyes
 		(
+			eyeIrisColor,
 			new Coords(eyeWidth, eyeHeight),
-			eyeUpperLidThickness
+			eyeSpacing,
+			eyeUpperLidThickness,
+			eyebrowThickness
 		),
 
 		new FaceFeatureNose
@@ -203,6 +290,13 @@ function buttonRender_Clicked()
 		new FaceFeatureEars
 		(
 			new Coords(earWidth, earHeight)
+		),
+
+		new FaceFeatureHair
+		(
+			hairColor,
+			hairlineHeightAboveEyes,
+			hairHeightAboveCrown
 		)
 	);
 
@@ -223,6 +317,11 @@ class Coords
 		this.y = y;
 	}
 
+	static ones()
+	{
+		return new Coords(1, 1);
+	}
+
 	clone()
 	{
 		return new Coords(this.x, this.y);
@@ -239,17 +338,55 @@ class Coords
 	{
 		return this.divideScalar(2);
 	}
+
+	invert()
+	{
+		return this.multiplyScalar(-1);
+	}
+
+	multiplyScalar(scalar)
+	{
+		this.x *= scalar;
+		this.y *= scalar;
+		return this;
+	}
+
 }
 
 class Face
 {
-	constructor(outline, eyes, nose, mouth, ears)
+	constructor(skinColor, outline, eyes, nose, mouth, ears, hair)
 	{
+		this.skinColor = skinColor;
 		this.outline = outline;
 		this.eyes = eyes;
 		this.nose = nose;
 		this.mouth = mouth;
 		this.ears = ears;
+		this.hair = hair;
+	}
+
+	center()
+	{
+		if (this._center == null)
+		{
+			this._center = this.size().clone().half();
+		}
+
+		return this._center;
+	}
+
+	size()
+	{
+		if (this._size == null)
+		{
+			this._size = new Coords
+			(
+				this.outline.size.x + this.ears.size.x * 2,
+				this.outline.size.y + this.hair.heightAboveCrown
+			);
+		}
+		return this._size;
 	}
 
 	toDomElement()
@@ -257,62 +394,152 @@ class Face
 		var d = document;
 		var canvas = d.createElement("canvas");
 
-		var sideCount = 2;
-		var faceSize = this.outline.size;
-		var earWidth = this.ears.size.x;
+		var faceSize = this.size();
 
-		canvas.width = faceSize.x + earWidth * sideCount;
+		canvas.width = faceSize.x;
 		canvas.height = faceSize.y;
 
 		var g = canvas.getContext("2d");
 		g.strokeStyle = "Black";
 		g.fillStyle = "Black";
 
-		var faceSizeHalf = faceSize.clone().half();
-		var faceCenter = new Coords
-		(
-			faceSizeHalf.x + earWidth, faceSizeHalf.y
-		);
+		this.toDomElement_Outline(g);
+		this.toDomElement_Eyes(g);
+		this.toDomElement_Nose(g);
+		this.toDomElement_Mouth(g);
+		this.toDomElement_Ears(g);
+		this.toDomElement_Hair(g);
 
-		// Outline.
+		return canvas;
+	}
+
+	toDomElement_Outline(g)
+	{
+		var faceSize = this.outline.size;
+
+		var faceSizeHalf = faceSize.clone().half();
+		var earWidth = this.ears.size.x;
+		var faceCenter = this.center();
+
+		var chinSize = this.outline.chinSize;
+		var chinWidth = chinSize.x;
+		var chinWidthHalf = chinWidth / 2;
+		var chinHeight = chinSize.y;
+		var jawSize = this.outline.jawSize;
+		var jawSizeHalf = jawSize.clone().half();
+
+		var controlPointOffset =
+			faceSizeHalf.x * .1;
 
 		g.beginPath();
-		g.moveTo(faceCenter.x, 0);
+		g.moveTo(faceCenter.x, faceCenter.y - faceSizeHalf.y); // top
 		g.quadraticCurveTo
 		(
-			faceCenter.x + faceSizeHalf.x, 0, // control point
+			faceCenter.x + faceSizeHalf.x, faceCenter.y - faceSizeHalf.y, // control point
 			faceCenter.x + faceSizeHalf.x, faceSizeHalf.y
-		);
+		); // Right (to the viewer) side of face.
+		g.bezierCurveTo
+		(
+			faceCenter.x + faceSizeHalf.x,
+			faceCenter.y + jawSize.y,
+
+			faceCenter.x + jawSizeHalf.x,
+			faceCenter.y + faceSizeHalf.y - chinHeight,
+
+			faceCenter.x + chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y - chinHeight
+		); // Right side of chin.
 		g.quadraticCurveTo
 		(
-			faceCenter.x + faceSizeHalf.x, faceSize.y, // control point
-			faceCenter.x, faceSize.y
-		);
+			faceCenter.x,
+			faceCenter.y + faceSizeHalf.y,
+
+			faceCenter.x,
+			faceCenter.y + faceSizeHalf.y
+		); // chin center
 		g.quadraticCurveTo
 		(
-			faceCenter.x - faceSizeHalf.x, faceSize.y, // control point
-			faceCenter.x - faceSizeHalf.x, faceSizeHalf.y
-		);
+			faceCenter.x - chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y - chinHeight,
+
+			faceCenter.x - chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y - chinHeight
+		); // chin left
+		g.bezierCurveTo
+		(
+			faceCenter.x - jawSizeHalf.x,
+			faceSize.y - chinHeight,
+
+			faceCenter.x - faceSizeHalf.x,
+			faceCenter.y + jawSize.y,
+
+			faceCenter.x - faceSizeHalf.x,
+			faceSizeHalf.y
+		); // left
 		g.quadraticCurveTo
 		(
-			faceCenter.x - faceSizeHalf.x, 0, // control point
-			faceSizeHalf.x, 0
-		);
+			faceCenter.x - faceSizeHalf.x, faceCenter.y - faceSizeHalf.y, // control point
+			faceSizeHalf.x, faceCenter.y - faceSizeHalf.y
+		); // top
+		g.fillStyle = this.skinColor;
+		g.fill();
 		g.stroke();
+	}
 
-		// Eyes.
-
+	toDomElement_Eyes(g)
+	{
+		var faceCenter = this.center();
 		var eyeSize = this.eyes.size;
 		var eyeSizeHalf = eyeSize.clone().half();
-		var eyeIrisRadius = eyeSizeHalf.y;
-		var eyePupilRadius = eyeIrisRadius / 3;
+		var eyeSpacingHalf = this.eyes.spacing / 2;
+		var eyeIrisRadius = eyeSizeHalf.y * .8;
+		var eyePupilRadius = eyeIrisRadius / 2;
+
+		var sideCount = 2;
 
 		for (var i = 0; i < sideCount; i++)
 		{
 			var eyeCenter =
 				(i == 0)
-				? new Coords(faceCenter.x - eyeSize.x, faceCenter.y)
-				: new Coords(faceCenter.x + eyeSize.x, faceCenter.y);
+				? new Coords(faceCenter.x - eyeSpacingHalf - eyeSizeHalf.x, faceCenter.y)
+				: new Coords(faceCenter.x + eyeSpacingHalf + eyeSizeHalf.x, faceCenter.y);
+
+			// Eye outline.
+
+			if (i == 1)
+			{
+				eyeSizeHalf.x *= -1;
+			}
+
+			var multiplier = 3 / 4; // Make the eye corners pointier.
+			g.beginPath();
+			g.moveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
+			); // Outer corner.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x * multiplier, eyeCenter.y - eyeSizeHalf.y * multiplier, // control point
+				eyeCenter.x, eyeCenter.y - eyeSizeHalf.y
+			); // Top.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x + eyeSizeHalf.x * multiplier, eyeCenter.y - eyeSizeHalf.y * multiplier,
+				eyeCenter.x + eyeSizeHalf.x, eyeCenter.y
+			); // Inner corner.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x + eyeSizeHalf.x * multiplier, eyeCenter.y + eyeSizeHalf.y * multiplier,
+				eyeCenter.x, eyeCenter.y + eyeSizeHalf.y
+			); // Bottom.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x * multiplier, eyeCenter.y + eyeSizeHalf.y * multiplier,
+				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
+			); // Outer corner again.
+			g.fillStyle = "White";
+			g.fill();
+			g.stroke();
 
 			// Iris.
 			g.beginPath();
@@ -322,6 +549,8 @@ class Face
 				eyeIrisRadius,
 				0, Math.PI * 2
 			);
+			g.fillStyle = this.eyes.irisColor;
+			g.fill();
 			g.stroke();
 
 			// Pupil.
@@ -332,35 +561,34 @@ class Face
 				eyePupilRadius,
 				0, Math.PI * 2
 			);
+			g.fillStyle = "Black";
 			g.fill();
+			g.stroke();
 
-			// Eye outline.
+			// Upper lid.
 
 			g.beginPath();
+			var eyelidUpperThickness = this.eyes.lidUpperThickness;
 			g.moveTo
 			(
 				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
-			);
+			); // Outer corner.
 			g.quadraticCurveTo
 			(
-				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y - eyeSizeHalf.y, // control point
-				eyeCenter.x, eyeCenter.y - eyeSizeHalf.y
-			);
+				eyeCenter.x - eyeSizeHalf.x * multiplier,
+				eyeCenter.y - (eyeSizeHalf.y + eyelidUpperThickness) * multiplier, // control point
+
+				eyeCenter.x,
+				eyeCenter.y - eyeSizeHalf.y - eyelidUpperThickness
+			); // Top.
 			g.quadraticCurveTo
 			(
-				eyeCenter.x + eyeSizeHalf.x, eyeCenter.y - eyeSizeHalf.y, // control point
-				eyeCenter.x + eyeSizeHalf.x, eyeCenter.y
-			);
-			g.quadraticCurveTo
-			(
-				eyeCenter.x + eyeSizeHalf.x, eyeCenter.y + eyeSizeHalf.y, // control point
-				eyeCenter.x, eyeCenter.y + eyeSizeHalf.y
-			);
-			g.quadraticCurveTo
-			(
-				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y + eyeSizeHalf.y, // control point
-				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
-			);
+				eyeCenter.x + eyeSizeHalf.x * multiplier,
+				eyeCenter.y - (eyeSizeHalf.y + eyelidUpperThickness) * multiplier,
+
+				eyeCenter.x + eyeSizeHalf.x,
+				eyeCenter.y
+			); // Inner corner.
 			g.stroke();
 
 			// Eyebrow.
@@ -370,7 +598,6 @@ class Face
 			eyebrowCenter.y -= distanceBetweenEyeAndBrow;
 
 			g.beginPath();
-
 			g.moveTo
 			(
 				eyebrowCenter.x - eyeSizeHalf.x,
@@ -386,14 +613,21 @@ class Face
 				eyebrowCenter.x + eyeSizeHalf.x, eyebrowCenter.y - eyeSizeHalf.y, // control point
 				eyebrowCenter.x + eyeSizeHalf.x, eyebrowCenter.y
 			);
+
+			var eyebrowThickness = this.eyes.eyebrowThickness;
+			g.lineWidth = eyebrowThickness;
 			g.stroke();
+			g.lineWidth = 1;
 		}
+	}
 
-		// Nose.
-
+	toDomElement_Nose(g)
+	{
+		var faceCenter = this.center();
+		var faceSize = this.size();
 		var noseTipWidthHalf = this.nose.tipWidth / 2;
 		var noseTipHeight = this.nose.tipHeight;
-		var noseTipPosY = faceCenter.y + faceSizeHalf.y * 0.4;
+		var noseTipPosY = faceCenter.y + faceSize.y / 5;
 
 		g.beginPath();
 		g.moveTo
@@ -417,6 +651,7 @@ class Face
 		var noseWingHeight = this.nose.wingHeight;
 		var noseWingHeightHalf = noseWingHeight / 2;
 
+		var sideCount = 2;
 		for (var i = 0; i < sideCount; i++)
 		{
 			if (i == 1)
@@ -442,11 +677,14 @@ class Face
 			);
 			g.stroke();
 		}
+	}
 
-		// Mouth.
-
+	toDomElement_Mouth(g)
+	{
+		var faceCenter = this.center();
+		var faceSize = this.size();
 		var mouthWidthHalf = this.mouth.width / 2;
-		var mouthPosY = faceCenter.y + faceSizeHalf.y * .6;
+		var mouthPosY = faceCenter.y + faceSize.y * .3;
 		g.beginPath();
 		g.moveTo
 		(
@@ -475,27 +713,82 @@ class Face
 			mouthPosY + mouthLipLowerThickness
 		);
 		g.stroke();
+	}
 
-		// Ears.
-
+	toDomElement_Ears(g)
+	{
+		var faceCenter = this.center();
+		var faceOutlineSize = this.outline.size;
 		var earSize = this.ears.size;
 		var earWidth = earSize.x;
 		var earWidthHalf = earWidth / 2;
 		var earHeight = earSize.y;
 		var earHeightHalf = earHeight / 2;
+		var tragusSize = new Coords(.5, 2).multiplyScalar(earWidth).half();
 
+		var sideCount = 2;
 		for (var i = 0; i < sideCount; i++)
 		{
 			var earStart =
 				i == 0
-				? new Coords(faceCenter.x + faceSize.x / 2, faceCenter.y)
-				: new Coords(faceCenter.x - faceSize.x / 2, faceCenter.y);
+				? new Coords(faceCenter.x + faceOutlineSize.x / 2, faceCenter.y)
+				: new Coords(faceCenter.x - faceOutlineSize.x / 2, faceCenter.y);
 
 			if (i == 1)
 			{
 				earWidth *= -1;
 				earWidthHalf *= -1;
+				tragusSize.x *= -1;
 			}
+
+			g.beginPath();
+			g.moveTo(earStart.x, earStart.y); // Top attachment.
+			g.quadraticCurveTo
+			(
+				earStart.x, earStart.y - earHeightHalf,
+				earStart.x + earWidthHalf, earStart.y - earHeightHalf
+			); // Top.
+			g.quadraticCurveTo
+			(
+				earStart.x + earWidth, earStart.y - earHeightHalf,
+				earStart.x + earWidth, earStart.y
+			); // Outer.
+			g.quadraticCurveTo
+			(
+				earStart.x + earWidthHalf, earStart.y + earHeight,
+				earStart.x, earStart.y + earHeight
+			); // Lobe.
+			g.closePath(); // hack
+			g.fillStyle = this.skinColor;
+			g.fill();
+			g.stroke();
+
+			// Tragus.
+
+			g.beginPath();
+			g.moveTo(earStart.x, earStart.y);
+			g.quadraticCurveTo
+			(
+				earStart.x + tragusSize.x,
+				earStart.y,
+
+				earStart.x + tragusSize.x,
+				earStart.y + tragusSize.y / 2
+			);
+			g.quadraticCurveTo
+			(
+				earStart.x + tragusSize.x,
+				earStart.y + tragusSize.y,
+
+				earStart.x,
+				earStart.y + tragusSize.y
+			);
+			g.stroke();
+
+			// Helix.
+
+			var helixThickness = 3;
+			earStart.y += helixThickness;
 
 			g.beginPath();
 			g.moveTo(earStart.x, earStart.y);
@@ -508,17 +801,56 @@ class Face
 			(
 				earStart.x + earWidth, earStart.y - earHeightHalf,
 				earStart.x + earWidth, earStart.y
-			);
-			g.quadraticCurveTo
-			(
-				earStart.x + earWidthHalf, earStart.y + earHeight,
-				earStart.x, earStart.y + earHeight
-			);
+			); // Outer.
 			g.stroke();
 		}
-
-		return canvas;
 	}
+
+	toDomElement_Hair(g)
+	{
+		var faceCenter = this.center();
+		var faceOutlineSize = this.outline.size;
+		var faceOutlineSizeHalf = faceOutlineSize.clone().half();
+
+		var hairlineFractionOfWidth = .6;
+
+		g.beginPath();
+		g.moveTo(faceCenter.x - faceOutlineSizeHalf.x, faceCenter.y);
+		g.lineTo
+		(
+			faceCenter.x - faceOutlineSizeHalf.x * hairlineFractionOfWidth,
+			faceCenter.y - this.hair.hairlineHeightAboveEyes
+		);
+		g.lineTo
+		(
+			faceCenter.x + faceOutlineSizeHalf.x * hairlineFractionOfWidth,
+			faceCenter.y - this.hair.hairlineHeightAboveEyes
+		);
+		g.lineTo
+		(
+			faceCenter.x + faceOutlineSizeHalf.x, faceCenter.y
+		);
+		g.quadraticCurveTo
+		(
+			faceCenter.x + faceOutlineSizeHalf.x, 
+			faceCenter.y - faceOutlineSizeHalf.y - this.hair.heightAboveCrown,
+
+			faceCenter.x,
+			faceCenter.y - faceOutlineSizeHalf.y - this.hair.heightAboveCrown
+		);
+		g.quadraticCurveTo
+		(
+			faceCenter.x - faceOutlineSizeHalf.x,
+			faceCenter.y - faceOutlineSizeHalf.y - this.hair.heightAboveCrown,
+
+			faceCenter.x - faceOutlineSizeHalf.x,
+			faceCenter.y
+		);
+		g.fillStyle = this.hair.color;
+		g.fill();
+		g.stroke();
+	}
+
 }
 
 class FaceFeatureEars
@@ -531,10 +863,30 @@ class FaceFeatureEars
 
 class FaceFeatureEyes
 {
-	constructor(size, upperLidThickness)
+	constructor
+	(
+		irisColor,
+		size,
+		spacing,
+		lidUpperThickness,
+		eyebrowThickness
+	)
 	{
+		this.irisColor = irisColor;
 		this.size = size;
-		this.upperLidThickness = upperLidThickness;
+		this.spacing = spacing;
+		this.lidUpperThickness = lidUpperThickness;
+		this.eyebrowThickness = eyebrowThickness;
+	}
+}
+
+class FaceFeatureHair
+{
+	constructor(color, hairlineHeightAboveEyes, heightAboveCrown)
+	{
+		this.color = color;
+		this.hairlineHeightAboveEyes = hairlineHeightAboveEyes;
+		this.heightAboveCrown = heightAboveCrown;
 	}
 }
 
@@ -548,15 +900,6 @@ class FaceFeatureMouth
 	}
 }
 
-class FaceFeatureOutline
-{
-	constructor(size, chinWidth)
-	{
-		this.size = size;
-		this.chinWidth = chinWidth;
-	}
-}
-
 class FaceFeatureNose
 {
 	constructor(tipWidth, tipHeight, wingWidth, wingHeight)
@@ -565,6 +908,16 @@ class FaceFeatureNose
 		this.tipHeight = tipHeight;
 		this.wingWidth = wingWidth;
 		this.wingHeight = wingHeight;
+	}
+}
+
+class FaceFeatureOutline
+{
+	constructor(size, chinSize, jawSize)
+	{
+		this.size = size;
+		this.chinSize = chinSize;
+		this.jawSize = jawSize;
 	}
 }
 
