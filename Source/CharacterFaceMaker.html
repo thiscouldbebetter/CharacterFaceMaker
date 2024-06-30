@@ -8,7 +8,7 @@
 	</style>
 </head>
 
-<body>
+<body onload="render()">
 
 <div id="divUi">
 
@@ -16,192 +16,323 @@
 
 	<p>Edit the inputs to modify the features of the displayed face.</p>
 
-	<div id="divInput">
-
-		<div>
-			<label>Skin Color:</label>
-			<input id="inputSkinColor" value="rgb(128, 64, 0)" style="width: 128px;"></input>
-		</div>
-
-		<div>
-			<label>Outline:</label>
-
-			<div>
-				<div>
-					<label>Width:</label>
-					<input id="inputFaceWidth" type="number" value="80"></input>
-
-					<label>Height:</label>
-					<input id="inputFaceHeight" type="number" value="100"></input>
-				</div>
-
-				<div>
-					<label>Jaw:</label>
+	<table>
+		<tr>
+			<td>
+				<div id="divInput">
 
 					<div>
-						<label>Width:</label>
-						<input id="inputJawWidth" type="number" value="60"></input>
+						<label>Skin Color:</label>
+						<input
+							id="inputSkinColor"
+							style="width: 128px;"
+							value="hsl(25, 50%, 50%)" 
+							onchange="render()"
+						></input>
 
-						<label>Height:</label>
-						<input id="inputJawHeight" type="number" value="30"></input>
+						<button onclick="buttonSkinColorMediumBrown_Clicked()">Medium Brown</button>
+						<button onclick="buttonSkinColorDarker_Clicked()">Darker</button>
+						<button onclick="buttonSkinColorLighter_Clicked()">Lighter</button>
 					</div>
-				</div>
-
-				<div>
-					<label>Chin:</label>
 
 					<div>
-						<label>Width:</label>
-						<input id="inputChinWidth" type="number" value="20"></input>
+						<label>Outline:</label>
 
-						<label>Height:</label>
-						<input id="inputChinHeight" type="number" value="3"></input>
+						<div>
+							<div>
+								<label>Width:</label>
+								<input
+									id="inputFaceWidth" type="number" value="80"
+									onchange="render()"
+								></input>
+
+								<label>Height:</label>
+								<input
+									id="inputFaceHeight" type="number" value="100"
+									onchange="render()"
+								></input>
+							</div>
+
+							<div>
+								<label>Jaw:</label>
+
+								<div>
+									<label>Width:</label>
+									<input
+										id="inputJawWidth" type="number" value="60"
+										onchange="render()"
+									></input>
+
+									<label>Height:</label>
+									<input
+										id="inputJawHeight" type="number" value="30"
+										onchange="render()"
+									></input>
+								</div>
+							</div>
+
+							<div>
+								<label>Chin:</label>
+
+								<div>
+									<label>Width:</label>
+									<input
+										id="inputChinWidth" type="number" value="20"
+										onchange="render()"
+									></input>
+
+									<label>Height:</label>
+									<input
+										id="inputChinHeight" type="number" value="3"
+										onchange="render()"
+									></input>
+								</div>
+							</div>
+
+						</div>
 					</div>
-				</div>
 
-			</div>
-		</div>
-
-		<div>
-			<label>Eye:</label>
-
-			<div>
-				<div>
-					<label>Iris Color:</label>
-					<input id="inputEyeIrisColor" value="rgb(0, 128, 0)" style="width: 128px;"></input>
-				</div>
-
-				<div>
-					<label>Width:</label>
-					<input id="inputEyeWidth" type="number"  value="18"></input>
-
-					<label>Height:</label>
-					<input id="inputEyeHeight" type="number" value="9"></input>
-
-					<label>Spacing:</label>
-					<input id="inputEyeSpacing" type="number" value="20"></input>
-
-				</div>
-
-				<div>
-					<label>Upper Lid Thickness:</label>
-					<input id="inputEyeUpperLidThickness" type="number" value="3"></input>
-				</div>
-
-				<div>
-					<label>Eyebrow Thickness:</label>
-					<input id="inputEyebrowThickness" type="number" value="3"></input>
-				</div>
-
-
-			</div>
-		</div>
-
-
-		<div>
-			<label>Nose:</label>
-
-			<div>
-				<label>Tip:</label>
-
-				<div>
 					<div>
-						<label>Width:</label>
-						<input id="inputNoseTipWidth" type="number" value="10"></input>
+						<label>Eye:</label>
 
-						<label>Height:</label>
-						<input id="inputNoseTipHeight" type="number" value="5"></input>
+						<div>
+							<div>
+								<label>Iris Color:</label>
+								<input
+									id="inputEyeIrisColor"
+									style="width: 128px;"
+									value="rgb(0, 128, 0)"
+									onchange="render()"
+								></input>
+							</div>
+
+							<div>
+								<label>Width:</label>
+								<input
+									id="inputEyeWidth" type="number"  value="18"
+									onchange="render()"
+								></input>
+
+								<label>Height:</label>
+								<input
+									id="inputEyeHeight" type="number" value="9"
+									onchange="render()"
+								></input>
+
+								<label>Spacing:</label>
+								<input
+									id="inputEyeSpacing" type="number" value="20"
+									onchange="render()"
+								></input>
+
+							</div>
+
+							<div>
+								<label>Upper Lid Thickness:</label>
+								<input
+									id="inputEyeUpperLidThickness" type="number" value="3"
+									onchange="render()"
+								></input>
+							</div>
+
+							<div>
+								<label>Eyebrow:</label>
+								<div>
+									<label>Thickness:</label>
+									<input
+										id="inputEyebrowThickness" type="number" value="3"
+										onchange="render()"
+									></input>
+
+									<label>Height Above Eye:</label>
+									<input
+										id="inputEyebrowHeightAboveEye" type="number" value="6"
+										onchange="render()"
+									></input>
+
+								</div>
+							</div>
+
+
+						</div>
 					</div>
 
-				</div>
 
-			</div>
-
-			<div>
-				<label>Wing:</label>
-
-				<div>
 					<div>
-						<label>Width:</label>
-						<input id="inputNoseWingWidth" type="number" value="4"></input>
+						<label>Nose:</label>
 
-						<label>Height:</label>
-						<input id="inputNoseWingHeight" type="number" value="6"></input>
+						<div>
+							<label>Tip:</label>
+
+							<div>
+								<div>
+									<label>Width:</label>
+									<input
+										id="inputNoseTipWidth" type="number" value="10"
+										onchange="render()"
+									></input>
+
+									<label>Height:</label>
+									<input
+										id="inputNoseTipHeight" type="number" value="5"
+										onchange="render()"
+									></input>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div>
+							<label>Wing:</label>
+
+							<div>
+								<div>
+									<label>Width:</label>
+									<input
+										id="inputNoseWingWidth" type="number" value="4"
+										onchange="render()"
+									></input>
+
+									<label>Height:</label>
+									<input
+										id="inputNoseWingHeight" type="number" value="6"
+										onchange="render()"
+									></input>
+
+									<label>Lift above Tip:</label>
+									<input
+										id="inputNoseWingLiftAboveTip" type="number" value="1"
+										onchange="render()"
+									></input>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div>
+							<label>Bridge:</label>
+
+							<div>
+								<div>
+									<label>Width:</label>
+									<input
+										id="inputNoseBridgeWidth" type="number" value="5"
+										onchange="render()"
+									></input>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div>
+						<label>Mouth:</label>
+
+						<div>
+							<div>
+								<label>Width:</label>
+								<input
+									id="inputMouthWidth" type="number" value="30"
+									onchange="render()"
+								></input>
+							</div>
+
+							<label>Lip Color:</label>
+							<input
+								id="inputLipColor"
+								style="width: 128px;"
+								value="Transparent" 
+								onchange="render()"
+							></input>
+
+							<div>
+								<label>Upper Lip Thickness:</label>
+								<input
+									id="inputMouthUpperLipThickness" type="number" value="4"
+									onchange="render()"
+								></input>
+							</div>
+
+							<div>
+								<label>Lower Lip Thickness:</label>
+								<input
+									id="inputMouthLowerLipThickness" type="number" value="5"
+									onchange="render()"
+								></input>
+							</div>
+
+						</div>
+					</div>
+
+					<div>
+						<label>Ears:</label>
+
+						<div>
+							<div>
+								<label>Width:</label>
+								<input
+									id="inputEarWidth" type="number" value="8"
+									onchange="render()"
+								></input>
+
+								<label>Height:</label>
+								<input
+									id="inputEarHeight" type="number" value="20"
+									onchange="render()"
+								></input>
+							</div>
+
+						</div>
+					</div>
+
+					<div>
+						<label>Hair:</label>
+
+						<div>
+							<div>
+								<label>Color:</label>
+								<input
+									id="inputHairColor"
+									style="width: 128px;"
+									value="rgb(16, 16, 16)"
+									onchange="render()"
+								></input>
+							</div>
+
+							<div>
+								<label>Height of Hairline Above Eyes:</label>
+								<input
+									id="inputHairlineHeightAboveEyes" type="number" value="30"
+									onchange="render()"
+								></input>
+							</div>
+
+							<div>
+								<label>Height of Hair Above Crown:</label>
+								<input
+									id="inputHairHeightAboveCrown" type="number" value="5"
+									onchange="render()"
+								></input>
+							</div>
+
+							</div>
+
+						</div>
 					</div>
 
 				</div>
+			</td>
 
-			</div>
+			<td>
+				<div id="divOutput"></div>
+			</td>
 
-		</div>
+		</tr>
 
-		<div>
-			<label>Mouth:</label>
+	</table>
 
-			<div>
-				<div>
-					<label>Width:</label>
-					<input id="inputMouthWidth" type="number" value="30"></input>
-				</div>
-
-				<div>
-					<label>Upper Lip Thickness:</label>
-					<input id="inputMouthUpperLipThickness" type="number" value="0"></input>
-				</div>
-
-				<div>
-					<label>Lower Lip Thickness:</label>
-					<input id="inputMouthLowerLipThickness" type="number" value="5"></input>
-				</div>
-
-			</div>
-		</div>
-
-		<div>
-			<label>Ears:</label>
-
-			<div>
-				<div>
-					<label>Width:</label>
-					<input id="inputEarWidth" type="number" value="8"></input>
-
-					<label>Height:</label>
-					<input id="inputEarHeight" type="number" value="16"></input>
-				</div>
-
-			</div>
-		</div>
-
-		<div>
-			<label>Hair:</label>
-
-			<div>
-				<div>
-					<label>Color:</label>
-					<input id="inputHairColor" value="rgb(16, 16, 16)" style="width: 128px;"></input>
-				</div>
-
-				<div>
-					<label>Height of Hairline Above Eyes:</label>
-					<input id="inputHairlineHeightAboveEyes" type="number" value="30"></input>
-				</div>
-
-				<div>
-					<label>Height of Hair Above Crown:</label>
-					<input id="inputHairHeightAboveCrown" type="number" value="5"></input>
-				</div>
-
-				</div>
-
-			</div>
-		</div>
-
-
-	</div>
-
-	<button onclick="buttonRender_Clicked();">Render</button>
-
-	<div id="divOutput"></div>
 
 </div>
 
@@ -209,96 +340,54 @@
 
 // UI event handlers.
 
-function buttonRender_Clicked()
+function buttonSkinColorMediumBrown_Clicked()
 {
 	var d = document;
-	var c = (id) => parseFloat(d.getElementById(id).value);
+	var inputSkinColor = d.getElementById("inputSkinColor");
+	inputSkinColor.value = "hsl(25, 50%, 50%)";
+	render();
+}
 
-	var skinColor =
-		d.getElementById("inputSkinColor").value;
+function buttonSkinColorDarker_Clicked()
+{
+	var d = document;
+	var inputSkinColor = d.getElementById("inputSkinColor");
+	var colorBefore = inputSkinColor.value;
+	var hsl = colorBefore.split("(")[1].split(")")[0].split(",").map(x => x.trim() );
+	var hue = hsl[0];
+	var saturation = hsl[1];
+	var luminance = parseInt(hsl[2].split("%")[0]);
+	if (luminance > 0)
+	{
+		luminance--;
+	}
+	var colorAfter = "hsl(" + hue + ", " + saturation + ", " + luminance + "%)";
+	inputSkinColor.value = colorAfter;
+	render();
+}
 
-	var faceWidth = c("inputFaceWidth");
-	var faceHeight = c("inputFaceHeight");
-	var chinWidth = c("inputChinWidth");
-	var chinHeight = c("inputChinHeight");
-	var jawWidth = c("inputJawWidth");
-	var jawHeight = c("inputJawHeight");
+function buttonSkinColorLighter_Clicked()
+{
+	var d = document;
+	var inputSkinColor = d.getElementById("inputSkinColor");
+	var colorBefore = inputSkinColor.value;
+	var hsl = colorBefore.split("(")[1].split(")")[0].split(",").map(x => x.trim() );
+	var hue = hsl[0];
+	var saturation = hsl[1];
+	var luminance = parseInt(hsl[2].split("%")[0]);
+	if (luminance < 100)
+	{
+		luminance++;
+	}
+	var colorAfter = "hsl(" + hue + ", " + saturation + ", " + luminance + "%)";
+	inputSkinColor.value = colorAfter;
+	render();
+}
 
-	var eyeIrisColor =
-		d.getElementById("inputEyeIrisColor").value;
-
-	var eyeWidth = c("inputEyeWidth");
-	var eyeHeight = c("inputEyeHeight");
-	var eyeSpacing = c("inputEyeSpacing");
-	var eyeUpperLidThickness = c("inputEyeUpperLidThickness");
-	var eyebrowThickness = c("inputEyebrowThickness");
-
-	var noseTipWidth = c("inputNoseTipWidth");
-	var noseTipHeight = c("inputNoseTipHeight");
-
-	var noseWingWidth = c("inputNoseWingWidth");
-	var noseWingHeight = c("inputNoseWingHeight");
-
-	var mouthWidth = c("inputMouthWidth");
-	var mouthUpperLipThickness = c("inputMouthUpperLipThickness");
-	var mouthLowerLipThickness = c("inputMouthLowerLipThickness");
-
-	var earWidth = c("inputEarWidth");
-	var earHeight = c("inputEarHeight");
-
-	var hairColor =
-		d.getElementById("inputHairColor").value;
-	var hairlineHeightAboveEyes = c("inputHairlineHeightAboveEyes");
-	var hairHeightAboveCrown = c("inputHairHeightAboveCrown");
-
-	var face = new Face
-	(
-		skinColor,
-
-		new FaceFeatureOutline
-		(
-			new Coords(faceWidth, faceHeight),
-			new Coords(chinWidth, chinHeight),
-			new Coords(jawWidth, jawHeight)
-		),
-
-		new FaceFeatureEyes
-		(
-			eyeIrisColor,
-			new Coords(eyeWidth, eyeHeight),
-			eyeSpacing,
-			eyeUpperLidThickness,
-			eyebrowThickness
-		),
-
-		new FaceFeatureNose
-		(
-			noseTipWidth,
-			noseTipHeight,
-
-			noseWingWidth,
-			noseWingHeight
-		),
-
-		new FaceFeatureMouth
-		(
-			mouthWidth,
-			mouthUpperLipThickness,
-			mouthLowerLipThickness
-		),
-
-		new FaceFeatureEars
-		(
-			new Coords(earWidth, earHeight)
-		),
-
-		new FaceFeatureHair
-		(
-			hairColor,
-			hairlineHeightAboveEyes,
-			hairHeightAboveCrown
-		)
-	);
+function render()
+{
+	var d = document;
+	var face = Face.fromDom(d);
 
 	var faceAsDomElement = face.toDomElement();
 
@@ -389,6 +478,109 @@ class Face
 		return this._size;
 	}
 
+	// DOM.
+
+	static fromDom(document)
+	{
+		var d = document;
+		var c = (id) => parseFloat(d.getElementById(id).value);
+
+		var skinColor =
+			d.getElementById("inputSkinColor").value;
+
+		var faceWidth = c("inputFaceWidth");
+		var faceHeight = c("inputFaceHeight");
+		var chinWidth = c("inputChinWidth");
+		var chinHeight = c("inputChinHeight");
+		var jawWidth = c("inputJawWidth");
+		var jawHeight = c("inputJawHeight");
+
+		var eyeIrisColor =
+			d.getElementById("inputEyeIrisColor").value;
+
+		var eyeWidth = c("inputEyeWidth");
+		var eyeHeight = c("inputEyeHeight");
+		var eyeSpacing = c("inputEyeSpacing");
+		var eyeUpperLidThickness = c("inputEyeUpperLidThickness");
+		var eyebrowThickness = c("inputEyebrowThickness");
+		var eyebrowHeightAboveEye = c("inputEyebrowHeightAboveEye");
+
+		var noseTipWidth = c("inputNoseTipWidth");
+		var noseTipHeight = c("inputNoseTipHeight");
+		var noseWingWidth = c("inputNoseWingWidth");
+		var noseWingHeight = c("inputNoseWingHeight");
+		var noseWingLiftAboveTip = c("inputNoseWingLiftAboveTip");
+		var noseBridgeWidth = c("inputNoseBridgeWidth");
+
+		var mouthWidth = c("inputMouthWidth");
+		var mouthLipColor =
+			d.getElementById("inputLipColor").value;
+		var mouthUpperLipThickness = c("inputMouthUpperLipThickness");
+		var mouthLowerLipThickness = c("inputMouthLowerLipThickness");
+
+		var earWidth = c("inputEarWidth");
+		var earHeight = c("inputEarHeight");
+
+		var hairColor =
+			d.getElementById("inputHairColor").value;
+		var hairlineHeightAboveEyes = c("inputHairlineHeightAboveEyes");
+		var hairHeightAboveCrown = c("inputHairHeightAboveCrown");
+
+		var face = new Face
+		(
+			skinColor,
+
+			new FaceFeatureOutline
+			(
+				new Coords(faceWidth, faceHeight),
+				new Coords(chinWidth, chinHeight),
+				new Coords(jawWidth, jawHeight)
+			),
+
+			new FaceFeatureEyes
+			(
+				eyeIrisColor,
+				new Coords(eyeWidth, eyeHeight),
+				eyeSpacing,
+				eyeUpperLidThickness,
+				eyebrowThickness,
+				eyebrowHeightAboveEye
+			),
+
+			new FaceFeatureNose
+			(
+				noseTipWidth,
+				noseTipHeight,
+				noseWingWidth,
+				noseWingHeight,
+				noseWingLiftAboveTip,
+				noseBridgeWidth
+			),
+
+			new FaceFeatureMouth
+			(
+				mouthWidth,
+				mouthLipColor,
+				mouthUpperLipThickness,
+				mouthLowerLipThickness
+			),
+
+			new FaceFeatureEars
+			(
+				new Coords(earWidth, earHeight)
+			),
+
+			new FaceFeatureHair
+			(
+				hairColor,
+				hairlineHeightAboveEyes,
+				hairHeightAboveCrown
+			)
+		);
+
+		return face;
+	}
+
 	toDomElement()
 	{
 		var d = document;
@@ -400,326 +592,38 @@ class Face
 		canvas.height = faceSize.y;
 
 		var g = canvas.getContext("2d");
-		g.strokeStyle = "Black";
-		g.fillStyle = "Black";
 
-		this.toDomElement_Outline(g);
-		this.toDomElement_Eyes(g);
-		this.toDomElement_Nose(g);
-		this.toDomElement_Mouth(g);
-		this.toDomElement_Ears(g);
-		this.toDomElement_Hair(g);
+		this.drawToGraphicsContext(g);
 
 		return canvas;
 	}
 
-	toDomElement_Outline(g)
+	drawToGraphicsContext(g)
 	{
-		var faceSize = this.outline.size;
+		g.strokeStyle = "Black";
+		g.fillStyle = "Black";
 
-		var faceSizeHalf = faceSize.clone().half();
-		var earWidth = this.ears.size.x;
-		var faceCenter = this.center();
+		this.ears.drawToGraphicsContext(this, g);
+		this.outline.drawToGraphicsContext(this, g);
+		this.eyes.drawToGraphicsContext(this, g);
+		this.nose.drawToGraphicsContext(this, g);
+		this.mouth.drawToGraphicsContext(this, g);
+		this.hair.drawToGraphicsContext(this, g);
+	}
+}
 
-		var chinSize = this.outline.chinSize;
-		var chinWidth = chinSize.x;
-		var chinWidthHalf = chinWidth / 2;
-		var chinHeight = chinSize.y;
-		var jawSize = this.outline.jawSize;
-		var jawSizeHalf = jawSize.clone().half();
-
-		var controlPointOffset =
-			faceSizeHalf.x * .1;
-
-		g.beginPath();
-		g.moveTo(faceCenter.x, faceCenter.y - faceSizeHalf.y); // top
-		g.quadraticCurveTo
-		(
-			faceCenter.x + faceSizeHalf.x, faceCenter.y - faceSizeHalf.y, // control point
-			faceCenter.x + faceSizeHalf.x, faceSizeHalf.y
-		); // Right (to the viewer) side of face.
-		g.bezierCurveTo
-		(
-			faceCenter.x + faceSizeHalf.x,
-			faceCenter.y + jawSize.y,
-
-			faceCenter.x + jawSizeHalf.x,
-			faceCenter.y + faceSizeHalf.y - chinHeight,
-
-			faceCenter.x + chinWidthHalf,
-			faceCenter.y + faceSizeHalf.y - chinHeight
-		); // Right side of chin.
-		g.quadraticCurveTo
-		(
-			faceCenter.x,
-			faceCenter.y + faceSizeHalf.y,
-
-			faceCenter.x,
-			faceCenter.y + faceSizeHalf.y
-		); // chin center
-		g.quadraticCurveTo
-		(
-			faceCenter.x - chinWidthHalf,
-			faceCenter.y + faceSizeHalf.y - chinHeight,
-
-			faceCenter.x - chinWidthHalf,
-			faceCenter.y + faceSizeHalf.y - chinHeight
-		); // chin left
-		g.bezierCurveTo
-		(
-			faceCenter.x - jawSizeHalf.x,
-			faceSize.y - chinHeight,
-
-			faceCenter.x - faceSizeHalf.x,
-			faceCenter.y + jawSize.y,
-
-			faceCenter.x - faceSizeHalf.x,
-			faceSizeHalf.y
-		); // left
-		g.quadraticCurveTo
-		(
-			faceCenter.x - faceSizeHalf.x, faceCenter.y - faceSizeHalf.y, // control point
-			faceSizeHalf.x, faceCenter.y - faceSizeHalf.y
-		); // top
-		g.fillStyle = this.skinColor;
-		g.fill();
-		g.stroke();
+class FaceFeatureEars
+{
+	constructor(size)
+	{
+		this.size = size;
 	}
 
-	toDomElement_Eyes(g)
+	drawToGraphicsContext(face, g)
 	{
-		var faceCenter = this.center();
-		var eyeSize = this.eyes.size;
-		var eyeSizeHalf = eyeSize.clone().half();
-		var eyeSpacingHalf = this.eyes.spacing / 2;
-		var eyeIrisRadius = eyeSizeHalf.y * .8;
-		var eyePupilRadius = eyeIrisRadius / 2;
-
-		var sideCount = 2;
-
-		for (var i = 0; i < sideCount; i++)
-		{
-			var eyeCenter =
-				(i == 0)
-				? new Coords(faceCenter.x - eyeSpacingHalf - eyeSizeHalf.x, faceCenter.y)
-				: new Coords(faceCenter.x + eyeSpacingHalf + eyeSizeHalf.x, faceCenter.y);
-
-			// Eye outline.
-
-			if (i == 1)
-			{
-				eyeSizeHalf.x *= -1;
-			}
-
-			var multiplier = 3 / 4; // Make the eye corners pointier.
-			g.beginPath();
-			g.moveTo
-			(
-				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
-			); // Outer corner.
-			g.quadraticCurveTo
-			(
-				eyeCenter.x - eyeSizeHalf.x * multiplier, eyeCenter.y - eyeSizeHalf.y * multiplier, // control point
-				eyeCenter.x, eyeCenter.y - eyeSizeHalf.y
-			); // Top.
-			g.quadraticCurveTo
-			(
-				eyeCenter.x + eyeSizeHalf.x * multiplier, eyeCenter.y - eyeSizeHalf.y * multiplier,
-				eyeCenter.x + eyeSizeHalf.x, eyeCenter.y
-			); // Inner corner.
-			g.quadraticCurveTo
-			(
-				eyeCenter.x + eyeSizeHalf.x * multiplier, eyeCenter.y + eyeSizeHalf.y * multiplier,
-				eyeCenter.x, eyeCenter.y + eyeSizeHalf.y
-			); // Bottom.
-			g.quadraticCurveTo
-			(
-				eyeCenter.x - eyeSizeHalf.x * multiplier, eyeCenter.y + eyeSizeHalf.y * multiplier,
-				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
-			); // Outer corner again.
-			g.fillStyle = "White";
-			g.fill();
-			g.stroke();
-
-			// Iris.
-			g.beginPath();
-			g.arc
-			(
-				eyeCenter.x, eyeCenter.y,
-				eyeIrisRadius,
-				0, Math.PI * 2
-			);
-			g.fillStyle = this.eyes.irisColor;
-			g.fill();
-			g.stroke();
-
-			// Pupil.
-			g.beginPath();
-			g.arc
-			(
-				eyeCenter.x, eyeCenter.y,
-				eyePupilRadius,
-				0, Math.PI * 2
-			);
-			g.fillStyle = "Black";
-			g.fill();
-			g.stroke();
-
-			// Upper lid.
-
-			g.beginPath();
-			var eyelidUpperThickness = this.eyes.lidUpperThickness;
-			g.moveTo
-			(
-				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
-			); // Outer corner.
-			g.quadraticCurveTo
-			(
-				eyeCenter.x - eyeSizeHalf.x * multiplier,
-				eyeCenter.y - (eyeSizeHalf.y + eyelidUpperThickness) * multiplier, // control point
-
-				eyeCenter.x,
-				eyeCenter.y - eyeSizeHalf.y - eyelidUpperThickness
-			); // Top.
-			g.quadraticCurveTo
-			(
-				eyeCenter.x + eyeSizeHalf.x * multiplier,
-				eyeCenter.y - (eyeSizeHalf.y + eyelidUpperThickness) * multiplier,
-
-				eyeCenter.x + eyeSizeHalf.x,
-				eyeCenter.y
-			); // Inner corner.
-			g.stroke();
-
-			// Eyebrow.
-
-			var distanceBetweenEyeAndBrow = eyeSize.y;
-			var eyebrowCenter = eyeCenter.clone();
-			eyebrowCenter.y -= distanceBetweenEyeAndBrow;
-
-			g.beginPath();
-			g.moveTo
-			(
-				eyebrowCenter.x - eyeSizeHalf.x,
-				eyebrowCenter.y
-			);
-			g.quadraticCurveTo
-			(
-				eyebrowCenter.x - eyeSizeHalf.x, eyebrowCenter.y - eyeSizeHalf.y, // control point
-				eyebrowCenter.x, eyebrowCenter.y - eyeSizeHalf.y
-			);
-			g.quadraticCurveTo
-			(
-				eyebrowCenter.x + eyeSizeHalf.x, eyebrowCenter.y - eyeSizeHalf.y, // control point
-				eyebrowCenter.x + eyeSizeHalf.x, eyebrowCenter.y
-			);
-
-			var eyebrowThickness = this.eyes.eyebrowThickness;
-			g.lineWidth = eyebrowThickness;
-			g.stroke();
-			g.lineWidth = 1;
-		}
-	}
-
-	toDomElement_Nose(g)
-	{
-		var faceCenter = this.center();
-		var faceSize = this.size();
-		var noseTipWidthHalf = this.nose.tipWidth / 2;
-		var noseTipHeight = this.nose.tipHeight;
-		var noseTipPosY = faceCenter.y + faceSize.y / 5;
-
-		g.beginPath();
-		g.moveTo
-		(
-			faceCenter.x - noseTipWidthHalf,
-			noseTipPosY - noseTipHeight
-		);
-		g.quadraticCurveTo
-		(
-			faceCenter.x - noseTipWidthHalf, noseTipPosY, // control point
-			faceCenter.x, noseTipPosY
-		);
-		g.quadraticCurveTo
-		(
-			faceCenter.x + noseTipWidthHalf, noseTipPosY, // control point
-			faceCenter.x + noseTipWidthHalf, noseTipPosY - noseTipHeight
-		);
-		g.stroke();
-
-		var noseWingWidth = this.nose.wingWidth;
-		var noseWingHeight = this.nose.wingHeight;
-		var noseWingHeightHalf = noseWingHeight / 2;
-
-		var sideCount = 2;
-		for (var i = 0; i < sideCount; i++)
-		{
-			if (i == 1)
-			{
-				noseTipWidthHalf *= -1;
-				noseWingWidth *= -1;
-			}
-
-			g.beginPath();
-			g.moveTo
-			(
-				faceCenter.x - noseTipWidthHalf, noseTipPosY - noseWingHeight
-			);
-			g.quadraticCurveTo
-			(
-				faceCenter.x - noseTipWidthHalf - noseWingWidth, noseTipPosY - noseWingHeight,
-				faceCenter.x - noseTipWidthHalf - noseWingWidth, noseTipPosY - noseWingHeightHalf
-			);
-			g.quadraticCurveTo
-			(
-				faceCenter.x - noseTipWidthHalf - noseWingWidth, noseTipPosY,
-				faceCenter.x - noseTipWidthHalf, noseTipPosY
-			);
-			g.stroke();
-		}
-	}
-
-	toDomElement_Mouth(g)
-	{
-		var faceCenter = this.center();
-		var faceSize = this.size();
-		var mouthWidthHalf = this.mouth.width / 2;
-		var mouthPosY = faceCenter.y + faceSize.y * .3;
-		g.beginPath();
-		g.moveTo
-		(
-			faceCenter.x - mouthWidthHalf,
-			mouthPosY
-		);
-		g.lineTo
-		(
-			faceCenter.x + mouthWidthHalf,
-			mouthPosY
-		);
-		g.stroke();
-
-		var mouthLipLowerThickness = this.mouth.lipThicknessLower;
-		var mouthLipLowerWidthHalf = mouthWidthHalf / 2;
-
-		g.beginPath();
-		g.moveTo
-		(
-			faceCenter.x - mouthLipLowerWidthHalf,
-			mouthPosY + mouthLipLowerThickness
-		);
-		g.lineTo
-		(
-			faceCenter.x + mouthLipLowerWidthHalf,
-			mouthPosY + mouthLipLowerThickness
-		);
-		g.stroke();
-	}
-
-	toDomElement_Ears(g)
-	{
-		var faceCenter = this.center();
-		var faceOutlineSize = this.outline.size;
-		var earSize = this.ears.size;
+		var faceCenter = face.center();
+		var faceOutlineSize = face.outline.size;
+		var earSize = face.ears.size;
 		var earWidth = earSize.x;
 		var earWidthHalf = earWidth / 2;
 		var earHeight = earSize.y;
@@ -757,9 +661,16 @@ class Face
 			(
 				earStart.x + earWidthHalf, earStart.y + earHeight,
 				earStart.x, earStart.y + earHeight
-			); // Lobe.
+			); // Lobe bottom.
+			g.lineTo
+			(
+				earStart.x - earWidth, earStart.y + earHeight
+			); // Lobe inner.
+
+
+
 			g.closePath(); // hack
-			g.fillStyle = this.skinColor;
+			g.fillStyle = face.skinColor;
 			g.fill();
 			g.stroke();
 
@@ -805,60 +716,6 @@ class Face
 			g.stroke();
 		}
 	}
-
-	toDomElement_Hair(g)
-	{
-		var faceCenter = this.center();
-		var faceOutlineSize = this.outline.size;
-		var faceOutlineSizeHalf = faceOutlineSize.clone().half();
-
-		var hairlineFractionOfWidth = .6;
-
-		g.beginPath();
-		g.moveTo(faceCenter.x - faceOutlineSizeHalf.x, faceCenter.y);
-		g.lineTo
-		(
-			faceCenter.x - faceOutlineSizeHalf.x * hairlineFractionOfWidth,
-			faceCenter.y - this.hair.hairlineHeightAboveEyes
-		);
-		g.lineTo
-		(
-			faceCenter.x + faceOutlineSizeHalf.x * hairlineFractionOfWidth,
-			faceCenter.y - this.hair.hairlineHeightAboveEyes
-		);
-		g.lineTo
-		(
-			faceCenter.x + faceOutlineSizeHalf.x, faceCenter.y
-		);
-		g.quadraticCurveTo
-		(
-			faceCenter.x + faceOutlineSizeHalf.x, 
-			faceCenter.y - faceOutlineSizeHalf.y - this.hair.heightAboveCrown,
-
-			faceCenter.x,
-			faceCenter.y - faceOutlineSizeHalf.y - this.hair.heightAboveCrown
-		);
-		g.quadraticCurveTo
-		(
-			faceCenter.x - faceOutlineSizeHalf.x,
-			faceCenter.y - faceOutlineSizeHalf.y - this.hair.heightAboveCrown,
-
-			faceCenter.x - faceOutlineSizeHalf.x,
-			faceCenter.y
-		);
-		g.fillStyle = this.hair.color;
-		g.fill();
-		g.stroke();
-	}
-
-}
-
-class FaceFeatureEars
-{
-	constructor(size)
-	{
-		this.size = size;
-	}
 }
 
 class FaceFeatureEyes
@@ -869,7 +726,8 @@ class FaceFeatureEyes
 		size,
 		spacing,
 		lidUpperThickness,
-		eyebrowThickness
+		eyebrowThickness,
+		eyebrowHeightAboveEye
 	)
 	{
 		this.irisColor = irisColor;
@@ -877,7 +735,154 @@ class FaceFeatureEyes
 		this.spacing = spacing;
 		this.lidUpperThickness = lidUpperThickness;
 		this.eyebrowThickness = eyebrowThickness;
+		this.eyebrowHeightAboveEye = eyebrowHeightAboveEye;
 	}
+
+	drawToGraphicsContext(face, g)
+	{
+		var faceCenter = face.center();
+		var eyeSize = face.eyes.size;
+		var eyeSizeHalf = eyeSize.clone().half();
+		var eyeSpacingHalf = face.eyes.spacing / 2;
+		var eyeIrisRadius = eyeSizeHalf.y * .8;
+		var eyePupilRadius = eyeIrisRadius / 2;
+
+		var sideCount = 2;
+
+		for (var i = 0; i < sideCount; i++)
+		{
+			var eyeCenter =
+				(i == 0)
+				? new Coords(faceCenter.x - eyeSpacingHalf - eyeSizeHalf.x, faceCenter.y)
+				: new Coords(faceCenter.x + eyeSpacingHalf + eyeSizeHalf.x, faceCenter.y);
+
+			// Eye outline.
+
+			if (i == 1)
+			{
+				eyeSizeHalf.x *= -1;
+			}
+
+			var multiplier = 5 / 6; // Make the eye corners pointier.
+			g.beginPath();
+			g.moveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
+			); // Outer corner.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x * multiplier, eyeCenter.y - eyeSizeHalf.y * multiplier, // control point
+				eyeCenter.x, eyeCenter.y - eyeSizeHalf.y
+			); // Top.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x + eyeSizeHalf.x * multiplier, eyeCenter.y - eyeSizeHalf.y * multiplier,
+				eyeCenter.x + eyeSizeHalf.x, eyeCenter.y
+			); // Inner corner.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x + eyeSizeHalf.x * multiplier, eyeCenter.y + eyeSizeHalf.y * multiplier,
+				eyeCenter.x, eyeCenter.y + eyeSizeHalf.y
+			); // Bottom.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x * multiplier, eyeCenter.y + eyeSizeHalf.y * multiplier,
+				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
+			); // Outer corner again.
+			g.fillStyle = "White";
+			g.fill();
+			g.stroke();
+
+			// Iris.
+			g.beginPath();
+			g.arc
+			(
+				eyeCenter.x, eyeCenter.y,
+				eyeIrisRadius,
+				0, Math.PI * 2
+			);
+			g.fillStyle = face.eyes.irisColor;
+			g.fill();
+			g.stroke();
+
+			// Pupil.
+			g.beginPath();
+			g.arc
+			(
+				eyeCenter.x, eyeCenter.y,
+				eyePupilRadius,
+				0, Math.PI * 2
+			);
+			g.fillStyle = "Black";
+			g.fill();
+			g.stroke();
+
+			// Upper lid.
+
+			g.beginPath();
+			var eyelidUpperThickness = face.eyes.lidUpperThickness;
+			g.moveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x, eyeCenter.y
+			); // Outer corner.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x - eyeSizeHalf.x * multiplier,
+				eyeCenter.y - (eyeSizeHalf.y + eyelidUpperThickness) * multiplier, // control point
+
+				eyeCenter.x,
+				eyeCenter.y - eyeSizeHalf.y - eyelidUpperThickness
+			); // Top.
+			g.quadraticCurveTo
+			(
+				eyeCenter.x + eyeSizeHalf.x * multiplier,
+				eyeCenter.y - (eyeSizeHalf.y + eyelidUpperThickness) * multiplier,
+
+				eyeCenter.x + eyeSizeHalf.x,
+				eyeCenter.y
+			); // Inner corner.
+			g.stroke();
+
+			// Eyebrow.
+
+			var distanceBetweenEyeTopAndBrow =
+				this.eyebrowHeightAboveEye;
+			var eyebrowCenter = eyeCenter.clone();
+			eyebrowCenter.y -=
+				distanceBetweenEyeTopAndBrow;
+			var eyebrowWidthHalf = eyeSizeHalf.x;
+			var eyebrowArch = eyeSizeHalf.y;
+
+			g.beginPath();
+			g.moveTo
+			(
+				eyebrowCenter.x - eyebrowWidthHalf,
+				eyebrowCenter.y
+			);
+			g.quadraticCurveTo
+			(
+				eyebrowCenter.x - eyebrowWidthHalf,
+				eyebrowCenter.y - eyebrowArch, // control point
+
+				eyebrowCenter.x,
+				eyebrowCenter.y - eyebrowArch
+			);
+			g.quadraticCurveTo
+			(
+				eyebrowCenter.x + eyebrowWidthHalf,
+				eyebrowCenter.y - eyebrowArch, // control point
+
+				eyebrowCenter.x + eyebrowWidthHalf,
+				eyebrowCenter.y
+			);
+
+			var eyebrowThickness = face.eyes.eyebrowThickness;
+			g.lineWidth = eyebrowThickness;
+			g.stroke();
+			g.lineWidth = 1;
+		}
+	}
+
 }
 
 class FaceFeatureHair
@@ -888,27 +893,293 @@ class FaceFeatureHair
 		this.hairlineHeightAboveEyes = hairlineHeightAboveEyes;
 		this.heightAboveCrown = heightAboveCrown;
 	}
+
+	drawToGraphicsContext(face, g)
+	{
+		var faceCenter = face.center();
+		var faceOutlineSize = face.outline.size;
+		var faceOutlineSizeHalf = faceOutlineSize.clone().half();
+
+		var hairlineFractionOfWidth = .7; // hack
+
+		g.beginPath();
+		g.moveTo
+		(
+			faceCenter.x - faceOutlineSizeHalf.x,
+			faceCenter.y
+		); // Top of left ear.
+		g.quadraticCurveTo
+		(
+			faceCenter.x - faceOutlineSizeHalf.x * hairlineFractionOfWidth * 1.2,
+			faceCenter.y,
+
+			faceCenter.x - faceOutlineSizeHalf.x * hairlineFractionOfWidth,
+			faceCenter.y - face.hair.hairlineHeightAboveEyes
+		); // Left side of hairline.
+		g.lineTo
+		(
+			faceCenter.x + faceOutlineSizeHalf.x * hairlineFractionOfWidth,
+			faceCenter.y - face.hair.hairlineHeightAboveEyes
+		); // Right side of hairline
+		g.quadraticCurveTo
+		(
+			faceCenter.x + faceOutlineSizeHalf.x * hairlineFractionOfWidth * 1.2,
+			faceCenter.y,
+
+			faceCenter.x + faceOutlineSizeHalf.x,
+			faceCenter.y
+		); // Top of right ear.
+		g.quadraticCurveTo
+		(
+			faceCenter.x + faceOutlineSizeHalf.x, 
+			faceCenter.y - faceOutlineSizeHalf.y - face.hair.heightAboveCrown,
+
+			faceCenter.x,
+			faceCenter.y - faceOutlineSizeHalf.y - face.hair.heightAboveCrown
+		);
+		g.quadraticCurveTo
+		(
+			faceCenter.x - faceOutlineSizeHalf.x,
+			faceCenter.y - faceOutlineSizeHalf.y - face.hair.heightAboveCrown,
+
+			faceCenter.x - faceOutlineSizeHalf.x,
+			faceCenter.y
+		);
+		g.fillStyle = face.hair.color;
+		g.fill();
+		g.stroke();
+	}
 }
 
 class FaceFeatureMouth
 {
-	constructor(width, lipThicknessUpper, lipThicknessLower)
+	constructor(width, lipColor, lipThicknessUpper, lipThicknessLower)
 	{
 		this.width = width;
+		this.lipColor = lipColor;
 		this.lipThicknessUpper = lipThicknessUpper;
 		this.lipThicknessLower = lipThicknessLower;
+	}
+
+	drawToGraphicsContext(face, g)
+	{
+		var faceCenter = face.center();
+		var faceSize = face.size();
+		var mouthWidthHalf = face.mouth.width / 2;
+		var mouthPosY = faceCenter.y + faceSize.y * .3;
+
+		// Lip color.
+
+		var mouthLipUpperThickness = face.mouth.lipThicknessUpper;
+		var mouthLipLowerThickness = face.mouth.lipThicknessLower;
+		var mouthLipLowerWidthHalf = mouthWidthHalf / 2;
+
+		var mouthLipLowerThicknessReduced =
+			mouthLipLowerThickness * .8;
+
+		// Upper lip color.
+
+		g.fillStyle = this.lipColor;
+
+		g.beginPath();
+
+		g.moveTo
+		(
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY
+		); // Left corner of mouth.
+		g.lineTo
+		(
+			faceCenter.x + mouthWidthHalf,
+			mouthPosY
+		); // Right corner of mouth
+		g.quadraticCurveTo
+		(
+			faceCenter.x + mouthWidthHalf,
+			mouthPosY - mouthLipUpperThickness,
+
+			faceCenter.x,
+			mouthPosY - mouthLipUpperThickness
+		); // Top center of upper lip.
+		g.quadraticCurveTo
+		(
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY - mouthLipUpperThickness,
+
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY
+		); // Left corner of mouth again.
+		g.fill();
+
+		// Lower lip color.
+
+		g.beginPath();
+
+		g.moveTo
+		(
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY
+		); // Left corner of mouth.
+		g.lineTo
+		(
+			faceCenter.x + mouthWidthHalf,
+			mouthPosY
+		); // Right corner of mouth
+		g.quadraticCurveTo
+		(
+			faceCenter.x + mouthWidthHalf,
+			mouthPosY + mouthLipLowerThicknessReduced,
+
+			faceCenter.x,
+			mouthPosY + mouthLipLowerThicknessReduced
+		); // Bottom center of lower lip.
+		g.quadraticCurveTo
+		(
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY + mouthLipLowerThicknessReduced,
+
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY
+		); // Left corner of mouth again.
+		g.fill();
+
+		// Interface of lips.
+
+		g.beginPath();
+		g.moveTo
+		(
+			faceCenter.x - mouthWidthHalf,
+			mouthPosY
+		);
+		g.lineTo
+		(
+			faceCenter.x + mouthWidthHalf,
+			mouthPosY
+		);
+		g.stroke();
+
+		// Shadow line of bottom lip.
+
+		g.beginPath();
+		g.moveTo
+		(
+			faceCenter.x - mouthLipLowerWidthHalf,
+			mouthPosY + mouthLipLowerThicknessReduced
+		);
+		g.lineTo
+		(
+			faceCenter.x,
+			mouthPosY + mouthLipLowerThickness
+		);
+		g.lineTo
+		(
+			faceCenter.x + mouthLipLowerWidthHalf,
+			mouthPosY + mouthLipLowerThicknessReduced
+		);
+		g.stroke();
 	}
 }
 
 class FaceFeatureNose
 {
-	constructor(tipWidth, tipHeight, wingWidth, wingHeight)
+	constructor
+	(
+		tipWidth,
+		tipHeight,
+		wingWidth,
+		wingHeight,
+		wingLiftAboveTip,
+		bridgeWidth
+	)
 	{
 		this.tipWidth = tipWidth;
 		this.tipHeight = tipHeight;
 		this.wingWidth = wingWidth;
 		this.wingHeight = wingHeight;
+		this.wingLiftAboveTip = wingLiftAboveTip;
+		this.bridgeWidth = bridgeWidth;
 	}
+
+	drawToGraphicsContext(face, g)
+	{
+		var faceCenter = face.center();
+		var faceSize = face.size();
+		var noseTipWidthHalf = face.nose.tipWidth / 2;
+		var noseTipHeight = face.nose.tipHeight;
+		var noseTipPosY = faceCenter.y + faceSize.y / 5;
+
+		g.beginPath();
+		g.moveTo
+		(
+			faceCenter.x - noseTipWidthHalf,
+			noseTipPosY - noseTipHeight
+		);
+		g.quadraticCurveTo
+		(
+			faceCenter.x - noseTipWidthHalf, noseTipPosY, // control point
+			faceCenter.x, noseTipPosY
+		);
+		g.quadraticCurveTo
+		(
+			faceCenter.x + noseTipWidthHalf, noseTipPosY, // control point
+			faceCenter.x + noseTipWidthHalf, noseTipPosY - noseTipHeight
+		);
+		g.stroke();
+
+		// Wings.
+
+		var noseWingWidth = face.nose.wingWidth;
+		var noseWingHeight = face.nose.wingHeight;
+		var noseWingHeightHalf = noseWingHeight / 2;
+		var bridgeWidthHalf = this.bridgeWidth / 2;
+
+		var sideCount = 2;
+		for (var i = 0; i < sideCount; i++)
+		{
+			if (i == 1)
+			{
+				noseTipWidthHalf *= -1;
+				noseWingWidth *= -1;
+				bridgeWidthHalf *= -1;
+			}
+
+			var noseWingCenter = new Coords
+			(
+				faceCenter.x - noseTipWidthHalf,
+				noseTipPosY - this.wingLiftAboveTip
+			);
+
+			g.beginPath();
+			g.moveTo
+			(
+				faceCenter.x - bridgeWidthHalf,
+				faceCenter.y
+			);
+			g.lineTo
+			(
+				noseWingCenter.x,
+				noseWingCenter.y - noseWingHeight
+			);
+			g.quadraticCurveTo
+			(
+				noseWingCenter.x - noseWingWidth,
+				noseWingCenter.y - noseWingHeight,
+
+				noseWingCenter.x - noseWingWidth,
+				noseWingCenter.y - noseWingHeightHalf
+			);
+			g.quadraticCurveTo
+			(
+				noseWingCenter.x - noseWingWidth,
+				noseWingCenter.y,
+
+				noseWingCenter.x,
+				noseWingCenter.y
+			);
+			g.stroke();
+		}
+	}
+
 }
 
 class FaceFeatureOutline
@@ -919,6 +1190,80 @@ class FaceFeatureOutline
 		this.chinSize = chinSize;
 		this.jawSize = jawSize;
 	}
+
+	drawToGraphicsContext(face, g)
+	{
+		var faceSize = face.outline.size;
+
+		var faceSizeHalf = faceSize.clone().half();
+		var earWidth = face.ears.size.x;
+		var faceCenter = face.center();
+
+		var chinSize = face.outline.chinSize;
+		var chinWidth = chinSize.x;
+		var chinWidthHalf = chinWidth / 2;
+		var chinHeight = chinSize.y;
+		var jawSize = face.outline.jawSize;
+		var jawSizeHalf = jawSize.clone().half();
+
+		var controlPointOffset =
+			faceSizeHalf.x * .1;
+
+		g.beginPath();
+		g.moveTo(faceCenter.x, faceCenter.y - faceSizeHalf.y); // top
+		g.quadraticCurveTo
+		(
+			faceCenter.x + faceSizeHalf.x, faceCenter.y - faceSizeHalf.y, // control point
+			faceCenter.x + faceSizeHalf.x, faceSizeHalf.y
+		); // Right (to the viewer) side of face.
+		g.bezierCurveTo
+		(
+			faceCenter.x + faceSizeHalf.x,
+			faceCenter.y + jawSize.y,
+
+			faceCenter.x + jawSizeHalf.x,
+			faceCenter.y + faceSizeHalf.y - chinHeight,
+
+			faceCenter.x + chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y - chinHeight
+		); // Right side of chin.
+		g.quadraticCurveTo
+		(
+			faceCenter.x + chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y,
+
+			faceCenter.x,
+			faceCenter.y + faceSizeHalf.y
+		); // Point of chin.
+		g.quadraticCurveTo
+		(
+			faceCenter.x - chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y,
+
+			faceCenter.x - chinWidthHalf,
+			faceCenter.y + faceSizeHalf.y - chinHeight
+		); // chin left
+		g.bezierCurveTo
+		(
+			faceCenter.x - jawSizeHalf.x,
+			faceSize.y - chinHeight,
+
+			faceCenter.x - faceSizeHalf.x,
+			faceCenter.y + jawSize.y,
+
+			faceCenter.x - faceSizeHalf.x,
+			faceSizeHalf.y
+		); // left
+		g.quadraticCurveTo
+		(
+			faceCenter.x - faceSizeHalf.x, faceCenter.y - faceSizeHalf.y, // control point
+			faceSizeHalf.x, faceCenter.y - faceSizeHalf.y
+		); // top
+		g.fillStyle = face.skinColor;
+		g.fill();
+		g.stroke();
+	}
+
 }
 
 </script>
