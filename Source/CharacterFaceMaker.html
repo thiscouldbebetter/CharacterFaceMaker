@@ -36,6 +36,15 @@
 					</div>
 
 					<div>
+						<label>Scale Multiplier:</label>
+						<input
+							id="inputScaleMultiplier"
+							value="2" 
+							onchange="render()"
+						></input>
+					</div>
+
+					<div>
 						<label>Outline:</label>
 
 						<div>
@@ -460,9 +469,25 @@ class Face
 		if (this._center == null)
 		{
 			this._center = this.size().clone().half();
+
+			// Don't count the hair.
+			this._center.y += this.hair.heightAboveCrown / 2;
 		}
 
 		return this._center;
+	}
+
+	scale(scaleFactor)
+	{
+		this._size = null;
+		this._center = null;
+
+		this.outline.scale(scaleFactor);
+		this.eyes.scale(scaleFactor);
+		this.nose.scale(scaleFactor);
+		this.mouth.scale(scaleFactor);
+		this.ears.scale(scaleFactor);
+		this.hair.scale(scaleFactor);
 	}
 
 	size()
@@ -474,6 +499,10 @@ class Face
 				this.outline.size.x + this.ears.size.x * 2,
 				this.outline.size.y + this.hair.heightAboveCrown
 			);
+
+			// Don't cut off any edges.
+			this._size.x += 2;
+			this._size.y += 2;
 		}
 		return this._size;
 	}
@@ -487,6 +516,8 @@ class Face
 
 		var skinColor =
 			d.getElementById("inputSkinColor").value;
+
+		var scaleMultiplier = c("inputScaleMultiplier");
 
 		var faceWidth = c("inputFaceWidth");
 		var faceHeight = c("inputFaceHeight");
@@ -578,6 +609,8 @@ class Face
 			)
 		);
 
+		face.scale(scaleMultiplier);
+
 		return face;
 	}
 
@@ -618,6 +651,13 @@ class FaceFeatureEars
 	{
 		this.size = size;
 	}
+
+	scale(scaleFactor)
+	{
+		this.size.multiplyScalar(scaleFactor);
+	}
+
+	// Draw.
 
 	drawToGraphicsContext(face, g)
 	{
@@ -667,8 +707,6 @@ class FaceFeatureEars
 				earStart.x - earWidth, earStart.y + earHeight
 			); // Lobe inner.
 
-
-
 			g.closePath(); // hack
 			g.fillStyle = face.skinColor;
 			g.fill();
@@ -698,7 +736,7 @@ class FaceFeatureEars
 
 			// Helix.
 
-			var helixThickness = 3;
+			var helixThickness = Math.abs(tragusSize.x);
 			earStart.y += helixThickness;
 
 			g.beginPath();
@@ -737,6 +775,17 @@ class FaceFeatureEyes
 		this.eyebrowThickness = eyebrowThickness;
 		this.eyebrowHeightAboveEye = eyebrowHeightAboveEye;
 	}
+
+	scale(scaleFactor)
+	{
+		this.size.multiplyScalar(scaleFactor);
+		this.spacing *= scaleFactor;
+		this.lidUpperThickness *= scaleFactor;
+		this.eyebrowThickness *= scaleFactor;
+		this.eyebrowHeightAboveEye *= scaleFactor;
+	}
+
+	// Draw.
 
 	drawToGraphicsContext(face, g)
 	{
@@ -894,6 +943,14 @@ class FaceFeatureHair
 		this.heightAboveCrown = heightAboveCrown;
 	}
 
+	scale(scaleFactor)
+	{
+		this.hairlineHeightAboveEyes *= scaleFactor;
+		this.heightAboveCrown *= scaleFactor;
+	}
+
+	// Draw.
+
 	drawToGraphicsContext(face, g)
 	{
 		var faceCenter = face.center();
@@ -960,6 +1017,15 @@ class FaceFeatureMouth
 		this.lipThicknessUpper = lipThicknessUpper;
 		this.lipThicknessLower = lipThicknessLower;
 	}
+
+	scale(scaleFactor)
+	{
+		this.width *= scaleFactor;
+		this.lipThicknessUpper *= scaleFactor;
+		this.lipThicknessLower *= scaleFactor;
+	}
+
+	// Draw.
 
 	drawToGraphicsContext(face, g)
 	{
@@ -1100,6 +1166,19 @@ class FaceFeatureNose
 		this.bridgeWidth = bridgeWidth;
 	}
 
+	scale(scaleFactor)
+	{
+		this.tipWidth *= scaleFactor;
+		this.tipHeight *= scaleFactor;
+		this.wingWidth *= scaleFactor;
+		this.wingHeight *= scaleFactor;
+		this.wingLiftAboveTip = scaleFactor;
+		this.bridgeWidth *= scaleFactor;
+	}
+
+	// Draw.
+
+
 	drawToGraphicsContext(face, g)
 	{
 		var faceCenter = face.center();
@@ -1190,6 +1269,15 @@ class FaceFeatureOutline
 		this.chinSize = chinSize;
 		this.jawSize = jawSize;
 	}
+
+	scale(scaleFactor)
+	{
+		this.size.multiplyScalar(scaleFactor);
+		this.chinSize.multiplyScalar(scaleFactor);
+		this.jawSize.multiplyScalar(scaleFactor);
+	}
+
+	// Draw.
 
 	drawToGraphicsContext(face, g)
 	{
